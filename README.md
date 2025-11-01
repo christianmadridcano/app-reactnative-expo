@@ -1,50 +1,122 @@
-# Welcome to your Expo app 👋
+# Evaluación 1 – App Expo + Expo Router
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil hecha con Expo, React Native y TypeScript usando Expo Router (enrutamiento basado en archivos). Incluye autenticación simple, pantalla de Login, navegación por pestañas (Home y Explore) y un Modal.
 
-## Get started
+## ✨ Características
 
-1. Install dependencies
+- Expo SDK 54 con React Native 0.81 y React 19
+- Expo Router con `_layout.tsx`, tabs y modal
+- Autenticación en memoria (usuarios de ejemplo)
+- TypeScript configurado
+- ESLint con `eslint-config-expo`
+- Iconos (expo-symbols, @expo/vector-icons) y Haptics
 
-   ```bash
-   npm install
-   ```
+## 🚀 Requisitos
 
-2. Start the app
+- Node.js 18+ (LTS recomendado)
+- npm 9+ (o pnpm/yarn si prefieres, pero el proyecto trae scripts con npm)
+- Android Studio (emulador Android) o Xcode (simulador iOS) si deseas emular; o la app Expo Go en tu dispositivo
 
-   ```bash
-   npx expo start
-   ```
+## 🧩 Instalación y ejecución
 
-In the output, you'll find options to open the app in a
+1) Instalar dependencias
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```powershell
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2) Iniciar el proyecto (Metro + menú Expo)
 
-## Learn more
+```powershell
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3) Abrir la app en:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Dispositivo físico con Expo Go (escanea el QR)
+- Emulador Android: selecciona "a" en la terminal o usa `npm run android`
+- Simulador iOS (solo macOS): selecciona "i" o usa `npm run ios`
+- Web: `npm run web`
 
-## Join the community
+## 📁 Estructura principal
 
-Join our community of developers creating universal apps.
+```
+app/
+   _layout.tsx           # Stack raíz: (tabs), login, modal
+   login.tsx             # Pantalla de login
+   modal.tsx             # Modal
+   (tabs)/
+      _layout.tsx         # Layout de pestañas
+      index.tsx           # Home (contador, toggle, logout)
+      explore.tsx         # Pantalla Explore
+components/
+   context/
+      auth-context.tsx    # Contexto de autenticación (in‑memory)
+constants/
+   theme.ts              # Colores y tema
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🔐 Autenticación (demo)
+
+El contexto `auth-context.tsx` mantiene un usuario en memoria y valida contra una lista fija:
+
+- user@mail.com / 1234
+- admin@mail.com / admin
+
+Si el login es exitoso, se navega a `/(tabs)`. En Home puedes cerrar sesión (Logout) y regresar a `/login`.
+
+## 🧪 Scripts disponibles
+
+```json
+"start": "expo start",            // Inicia el servidor de desarrollo
+"android": "expo start --android", // Abre en emulador Android
+"ios": "expo start --ios",        // Abre en simulador iOS (macOS)
+"web": "expo start --web",        // Ejecuta en web
+"lint": "expo lint",              // Linter (ESLint)
+"reset-project": "node ./scripts/reset-project.js" // Restaura proyecto base
+```
+
+Comandos rápidos (PowerShell):
+
+```powershell
+npm run lint
+npm run android
+npm run web
+```
+
+## 🛠️ Desarrollo
+
+- Enrutamiento por archivos: cada archivo en `app/` es una ruta. `_layout.tsx` define layouts/anidaciones.
+- Estilos con `StyleSheet` de React Native.
+- Tipado con TypeScript (tsconfig incluido).
+- Linting: el workspace incluye reglas y acciones de guardado para ordenar imports y aplicar fixes.
+
+## 🧯 Solución de problemas
+
+- Metro cache extraño: limpia caché
+   ```powershell
+   npx expo start -c
+   ```
+- Emulador Android no abre: verifica que Android Studio esté instalado y que tengas un AVD creado; abre Android Studio una vez y luego reintenta `npm run android`.
+- Error de sintaxis (por ejemplo “Identifier expected”): normalmente es una coma faltante o JSX mal formado; revisa el archivo que indique el error y valida objetos/JSX.
+
+## 📦 Build y publicación
+
+Para builds de producción con EAS (recomendado):
+
+- Documentación: https://docs.expo.dev/eas/
+- Requiere una cuenta Expo y configurar `eas.json`.
+
+## 📚 Recursos
+
+- Expo: https://docs.expo.dev/
+- Expo Router: https://docs.expo.dev/router/introduction/
+- React Native: https://reactnative.dev/docs/environment-setup
+
+---
+
+Hecho con Expo + React Native. Si necesitas agregar más pantallas, endpoints o un backend real de auth, puedo ayudarte a extender esta base.
+
+## 🎥 Video demostrativo
+
+[Ver en YouTube](https://www.youtube.com/watch?v=9aytSh6XS8E)
