@@ -1,50 +1,77 @@
-import { useAuth } from '@/components/context/auth-context';
-import { Link, useRouter } from 'expo-router';
+import TaskItem from '@/components/task-item';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import Title from '@/components/ui/title';
+import { Task } from '@/constants/types';
+import { generateRandomId } from '@/utils/generate-random-id';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+const initialTodos = [    
+  { id: generateRandomId(), title: 'Comprar Leche', completed: false },
+  { id: generateRandomId(), title: 'Estudiar para el examen', completed: true },
+  { id: generateRandomId(), title: 'Llamar a mamá', completed: false },
+  { id: generateRandomId(), title: 'Pasear al perro', completed: true },  
+]
 
 export default function HomeScreen() {
-  const { user, logout } = useAuth();
-  const router = useRouter();
+  const[todos, setTodos] = useState<Task[]>(initialTodos);
+  const [newTaskTitle, setNewTaskTitle] = useState("");
 
-  const handleLogout = () => {
-    logout();
-    router.replace('/login');
+  const toggleTodo = (id: string) => {
+    setTodos(prevTodos =>
+      prevTodos.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    )
+  }
+
+  const removeTodo = (id: string) => {
+    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
+  }
+
+  const addTodo = (title: string) => {
+    const newTodo: Task = {
+      id: generateRandomId(),
+      title,
+      completed: false,
+    };
+    setTodos(prevTodos => [...prevTodos, newTodo]);
+    setNewTaskTitle("");
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.headerText}>Bienvenido {user?.name}</Text>
-      
-     
-      <Text>Hola {user?.name}</Text>
-
-      <Pressable style={styles.button} onPress={handleLogout}>
-        <Text style={styles.buttonText}>Logout</Text>
-      </Pressable>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Title>
+        Todo List
+      </Title>
+      {todos.map((todo) => (
+        <TaskItem 
+          key={todo.id} 
+          task={todo} 
+          onToggle={toggleTodo}
+          onRemove={removeTodo} 
+        />
+      ))}
+      <View style={{ height: 16, flexDirection: 'row' }}>
+        <TextInput
+          style={{ flex: 1, borderWidth: 1, borderColor: '#ccc', borderRadius: 4, padding: 8, height: 40 }}
+          placeholder="Nueva tarea"
+          value={newTaskTitle}
+          onChangeText={setNewTaskTitle}
+          onSubmitEditing={() => addTodo(newTaskTitle)} 
+        />
+        <TouchableOpacity onPress={() => addTodo(newTaskTitle)}>
+          <IconSymbol name="plus.circle.fill" size={40} color="#007AFF" />
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 16,
+    flex: 1
   },
-  button: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#1cf051ff',
-    borderRadius: 5,
-  },
-  headerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  buttonText: {
-    color: '#1d0404ff',
-    textAlign: 'center',
-  },
-  });
+});
