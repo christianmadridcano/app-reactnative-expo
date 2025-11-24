@@ -1,8 +1,8 @@
 # Evaluación 2 – App Expo + Expo Router
 
-Aplicación móvil hecha con Expo, React Native y TypeScript usando Expo Router (enrutamiento basado en archivos). Este repositorio recoge y amplía las funcionalidades desarrolladas en la Evaluación 1 y en la Evaluación 2: incluye autenticación simple, pantalla de Login, navegación por pestañas (Home y Profile), un Modal, un Todo list completo, captura de fotos desde la cámara y guardado de ubicación (geolocalización), entre otras mejoras.
+Aplicación móvil hecha con Expo, React Native y TypeScript usando Expo Router (enrutamiento basado en archivos). Este repositorio recoge y amplía las funcionalidades desarrolladas en la Evaluación 1 y en la Evaluación 2: incluye autenticación simple, pantalla de Login, navegación por pestañas (Home y Profile), un Todo list completo, captura de fotos desde la cámara y guardado de ubicación (geolocalización), entre otras mejoras.
 
-## ✨ Características
+## Características
 
 - Expo SDK 54 con React Native 0.81 y React 19
 - Expo Router con `_layout.tsx`, tabs 
@@ -15,13 +15,13 @@ Aplicación móvil hecha con Expo, React Native y TypeScript usando Expo Router 
  - Geolocalización (`expo-location`): se guarda la ubicación al crear la tarea (si el usuario lo permite)
  - Visualización de miniaturas en la lista de tareas y coordenadas mostradas junto a cada tarea
 
-## 🚀 Requisitos
+##  Requisitos
 
 - Node.js 18+ (LTS recomendado)
 - npm 9+ (o pnpm/yarn si prefieres, pero el proyecto trae scripts con npm)
 - Android Studio (emulador Android) o Xcode (simulador iOS) si deseas emular; o la app Expo Go en tu dispositivo
 
-## 🧩 Instalación y ejecución
+## Instalación y ejecución
 
 1) Instalar dependencias
 
@@ -42,7 +42,7 @@ npx expo start
 - Simulador iOS (solo macOS): selecciona "i" o usa `npm run ios`
 - Web: `npm run web`
 
-## 📁 Estructura principal
+##  Estructura principal
 
 ```
 app/
@@ -60,7 +60,7 @@ constants/
    theme.ts              # Colores y tema
 ```
 
-## 🔐 Autenticación (demo)
+##  Autenticación (demo)
 
 El contexto `auth-context.tsx` mantiene un usuario en memoria y valida contra una lista fija:
 
@@ -69,7 +69,7 @@ El contexto `auth-context.tsx` mantiene un usuario en memoria y valida contra un
 
 Si el login es exitoso, se navega a `/(tabs)`. En Home puedes cerrar sesión (Logout) y regresar a `/login`.
 
-## 📝 Uso: Todo list, Fotos y Ubicación
+##  Uso: Todo list, Fotos y Ubicación
 
 1. Abre la app y ve a la pestaña "Home".
 2. Pulsa el botón "+" para crear una nueva tarea.
@@ -85,7 +85,7 @@ Si el login es exitoso, se navega a `/(tabs)`. En Home puedes cerrar sesión (Lo
 
 Nota: Actualmente los datos (tareas, fotos, coordenadas) se mantienen en memoria durante la ejecución de la app (demo). No hay persistencia en disco ni sincronización con un backend en esta versión.
 
-## 🧪 Scripts disponibles
+## Scripts disponibles
 
 ```json
 "start": "expo start",            // Inicia el servidor de desarrollo
@@ -104,14 +104,14 @@ npm run android
 npm run web
 ```
 
-## 🛠️ Desarrollo
+##  Desarrollo
 
 - Enrutamiento por archivos: cada archivo en `app/` es una ruta. `_layout.tsx` define layouts/anidaciones.
 - Estilos con `StyleSheet` de React Native.
 - Tipado con TypeScript (tsconfig incluido).
 - Linting: el workspace incluye reglas y acciones de guardado para ordenar imports y aplicar fixes.
 
-## 🧯 Solución de problemas
+##  Solución de problemas
 
 - Metro cache extraño: limpia caché
    ```powershell
@@ -179,14 +179,14 @@ Consejos:
 - Acepta los permisos cuando la app los solicite en el emulador o dispositivo físico para probar la funcionalidad de foto/ubicación.
 - En Android, revisa la configuración de permisos de la app si la cámara o ubicación no funcionan.
 
-## 📦 Build y publicación
+##  Build y publicación
 
 Para builds de producción con EAS (recomendado):
 
 - Documentación: https://docs.expo.dev/eas/
 - Requiere una cuenta Expo y configurar `eas.json`.
 
-## 📚 Recursos
+##  Recursos
 
 - Expo: https://docs.expo.dev/
 - Expo Router: https://docs.expo.dev/router/introduction/
@@ -198,4 +198,4 @@ Hecho con Expo + React Native. Si necesitas agregar más pantallas, endpoints o 
 
 ## 🎥 Video demostrativo
 
-[Ver en YouTube](https://www.youtube.com/watch?v=9aytSh6XS8E)
+[Ver en YouTube](https://www.youtube.com/shorts/ziSA8LvgR1g)
