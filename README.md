@@ -1,5 +1,13 @@
 # Evaluación 2 – App Expo + Expo Router
 
+
+Equipo:
+
+- Christian Madrid Cano — Desarrollo de la app
+- Marcos Sepúlveda — Desarrollo de la app
+
+Nota: Usamos herramientas de IA como apoyo al estudio y para acelerar tareas de documentación y refactorización.
+
 Aplicación móvil hecha con Expo, React Native y TypeScript usando Expo Router (enrutamiento basado en archivos). Este repositorio recoge y amplía las funcionalidades desarrolladas en la Evaluación 1 y en la Evaluación 2: incluye autenticación simple, pantalla de Login, navegación por pestañas (Home y Profile), un Todo list completo, captura de fotos desde la cámara y guardado de ubicación (geolocalización), entre otras mejoras.
 
 ## Características
