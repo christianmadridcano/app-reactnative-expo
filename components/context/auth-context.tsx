@@ -1,6 +1,7 @@
+import { clearSessionFromStorage, saveSessionToStorage } from '@/utils/storage';
 import { createContext, useContext, useState } from 'react';
 
-interface User {
+export interface User {
     id: string;
     name: string;
 }
@@ -26,6 +27,7 @@ const login = (username: string, password: string) => {
         
     if (foundUser) {
             setUser({ id: foundUser.id, name: foundUser.name });
+            saveSessionToStorage({ id: foundUser.id, name: foundUser.name });
     } else {
       throw new Error('Login Failed: Invalid username or password.');
     }
@@ -33,6 +35,7 @@ const login = (username: string, password: string) => {
 
   const logout = () => {
     setUser(null);
+    clearSessionFromStorage();
    }
 
   return (
